@@ -6,10 +6,28 @@
     @click="handleClick"
   >
     <div class="option-content">
-      <div class="option-id">{{ option.id }}</div>
+      <!-- 显示图片（如果有） -->
+      <div v-if="option.image_url" class="option-image">
+        <img :src="option.image_url" :alt="option.description" />
+      </div>
+      
+      <div class="option-header">
+        <div class="option-id">{{ option.id }}</div>
+        <div class="option-icon" v-if="isSelected">
+          <CheckCircleOutlined style="color: #52c41a; font-size: 20px" />
+        </div>
+      </div>
+      
       <div class="option-description">{{ option.description }}</div>
-      <div class="option-icon" v-if="isSelected">
-        <CheckCircleOutlined style="color: #52c41a; font-size: 24px" />
+      
+      <div v-if="option.tag" class="option-tag">
+        <a-tag color="blue">{{ option.tag }}</a-tag>
+      </div>
+      
+      <div v-if="option.colors" class="option-colors">
+        <a-tag v-for="(color, idx) in option.colors.split('+')" :key="idx">
+          {{ color.trim() }}
+        </a-tag>
       </div>
     </div>
   </a-card>
@@ -41,8 +59,8 @@ const handleClick = () => {
 }
 
 .option-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .option-card.selected {
@@ -52,31 +70,56 @@ const handleClick = () => {
 
 .option-content {
   display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-image {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.option-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.option-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 16px;
 }
 
 .option-id {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: #1890ff;
+  background: linear-gradient(135deg, #1890ff 0%, #52c41a 100%);
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 18px;
-  flex-shrink: 0;
+  font-size: 16px;
 }
 
 .option-description {
-  flex: 1;
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333;
 }
 
-.option-icon {
-  flex-shrink: 0;
+.option-tag {
+  margin-top: 8px;
+}
+
+.option-colors {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 </style>
