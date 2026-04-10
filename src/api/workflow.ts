@@ -5,7 +5,7 @@ const BASE_URL = 'https://ip-designer-backend.vercel.app/api';
 export interface ProjectInfo {
   name: string;
   style: string;
-  target_audience: string;
+  audience: string;
   description: string;
 }
 
@@ -13,7 +13,7 @@ export interface Project {
   id: string;
   name: string;
   style: string;
-  target_audience: string;
+  audience: string;
   description: string;
   current_step: number;
   total_steps: number;
