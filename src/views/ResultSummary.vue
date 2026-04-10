@@ -13,7 +13,7 @@
             {{ store.currentProject?.style }}
           </a-descriptions-item>
           <a-descriptions-item label="目标受众">
-            {{ store.currentProject?.target_audience }}
+            {{ store.currentProject?.audience }}
           </a-descriptions-item>
           <a-descriptions-item label="详细描述">
             {{ store.currentProject?.description }}
