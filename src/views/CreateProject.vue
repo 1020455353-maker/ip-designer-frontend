@@ -30,10 +30,10 @@
 
         <a-form-item
           label="目标受众"
-          name="target_audience"
+          name="audience"
           :rules="[{ required: true, message: '请选择目标受众' }]"
         >
-          <a-select v-model:value="formState.target_audience" placeholder="请选择目标受众" size="large">
+          <a-select v-model:value="formState.audience" placeholder="请选择目标受众" size="large">
             <a-select-option value="年轻人">年轻人</a-select-option>
             <a-select-option value="儿童">儿童</a-select-option>
             <a-select-option value="职场人士">职场人士</a-select-option>
@@ -83,7 +83,7 @@ const store = useProjectStore();
 const formState = reactive({
   name: '',
   style: '',
-  target_audience: '',
+  audience: '',
   description: ''
 });
 
