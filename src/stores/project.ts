@@ -31,12 +31,21 @@ export const useProjectStore = defineStore('project', () => {
     }
   };
 
-  const runStep = async () => {
+   const runStep = async () => {
     if (!currentProject.value) return null;
 
     isLoading.value = true;
     try {
-      const result = await executeStep(currentProject.value.id, currentStep.value);
+      const result = await executeStep(
+        currentProject.value.id, 
+        currentStep.value,
+        {
+          name: currentProject.value.name,
+          style: currentProject.value.style,
+          audience: currentProject.value.audience,
+          description: currentProject.value.description
+        }
+      );
       if (result.success) {
         steps.value.push(result.step);
         return result.ai_result.options;
