@@ -79,3 +79,18 @@ export const getStatus = async (projectId: string): Promise<{
   });
   return response.data;
 };
+
+export const generateImage = async (projectInfo: ProjectInfo, selectedOptions?: string): Promise<{
+  success: boolean;
+  image_url: string;
+  prompt: string;
+}> => {
+  const response = await axios.post(`${BASE_URL}/workflow/generate-image`, {
+    name: projectInfo.name,
+    style: projectInfo.style,
+    audience: projectInfo.audience,
+    description: projectInfo.description,
+    selected_options: selectedOptions
+  });
+  return response.data;
+};
