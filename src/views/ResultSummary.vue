@@ -86,8 +86,9 @@ const handleGenerateImage = async () => {
   
   isGeneratingImage.value = true;
   try {
-    const optionsText = store.selectedOptions
-      .map(([_, option]) => option.description)
+    // selectedOptions 是 Map 类型，需要转换
+    const optionsText = Array.from(store.selectedOptions.values())
+      .map((option: any) => option.description)
       .join('，');
     
     const result = await generateImage(
