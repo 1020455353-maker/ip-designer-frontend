@@ -46,7 +46,7 @@ export const createProject = async (projectInfo: ProjectInfo): Promise<{
   return response.data;
 };
 
-export const executeStep = async (projectId: string, stepNumber: number): Promise<{
+export const executeStep = async (projectId: string, stepNumber: number, projectInfo?: ProjectInfo): Promise<{
   success: boolean;
   message: string;
   step: StepResult;
@@ -60,8 +60,12 @@ export const executeStep = async (projectId: string, stepNumber: number): Promis
 }> => {
   const response = await axios.post(`${BASE_URL}/workflow/step`, {
     project_id: projectId,
-    step_number: stepNumber
-});
+    step_number: stepNumber,
+    project_name: projectInfo?.name,
+    style: projectInfo?.style,
+    audience: projectInfo?.audience,
+    description: projectInfo?.description
+  });
   return response.data;
 };
 
