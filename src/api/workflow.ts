@@ -60,8 +60,8 @@ export const executeStep = async (projectId: string, stepNumber: number): Promis
 }> => {
   const response = await axios.post(`${BASE_URL}/workflow/step`, {
     project_id: projectId,
-    step: stepNumber
-  });
+    step_number: stepNumber
+});
   return response.data;
 };
 
